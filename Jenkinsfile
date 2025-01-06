@@ -16,8 +16,9 @@ pipeline {
 						"docker rmi -f eureka-img"}
 		}		
 		stage('Deploy') {			
-			steps { bat "docker build -t eureka-img ."			    
-			            bat "docker run -p 9761:8761 -d --name eureka-cntr --network my-net eureka-img"}		
+			steps { bat "docker run -p 9411:9411 -d --name zipkin-cntr --network my-net openzipkin/zipkin"
+						bat "docker build -t eureka-img ."			    
+			            	bat "docker run -p 9761:8761 -d --name eureka-cntr --network my-net eureka-img"}		
 		}		
 	}
 }
