@@ -11,9 +11,9 @@ pipeline {
 		stage('Build'){			
 			steps {bat "mvn clean install -DskipTests"}		
 		}
-		stage('Pre-Deploy'){
-			steps{bat "docker rm -f eureka-cntr"
-						"docker rmi -f eureka-img"}
+		// stage('Pre-Deploy'){
+		// 	steps{bat "docker rm -f eureka-cntr"
+		// 				"docker rmi -f eureka-img"}
 		}		
 		stage('Deploy') {			
 			steps { bat "docker run -p 9411:9411 -d --name zipkin-cntr --network my-net openzipkin/zipkin"
